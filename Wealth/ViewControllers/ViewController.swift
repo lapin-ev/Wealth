@@ -10,6 +10,26 @@ import UIKit
 import Charts
 
 final class ViewController: UIViewController {
+    
+    fileprivate var someData: ChartApplicable?
+    
+    fileprivate enum CellType: Int {
+        case summary
+        case chart
+        
+        var cellIdentifier: String {
+            get {
+                switch self {
+                case .summary:
+                    return String(describing: SummaryCell.self)
+                case .chart:
+                    return String(describing: ChartCell.self)
+                }
+            }
+        }
+    }
+    
+    fileprivate var cellsToDisplay: [CellType] = [.summary, .chart]
 
     fileprivate lazy var dataProvider: DataProvider = {
         return DataProvider()
@@ -17,10 +37,7 @@ final class ViewController: UIViewController {
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     
-    
-    
     @IBAction func reload(_ sender: Any) {
-        let dataProvider = DataProvider()
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
             switch $0 {
             case .success( let values ):
@@ -33,7 +50,6 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dataProvider = DataProvider()
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
             switch $0 {
             case .success( let values ):
@@ -42,6 +58,21 @@ final class ViewController: UIViewController {
                 print(error)
             }
         }
+        registerNibs()
+    }
+    
+    private func registerNibs() {
+        let summaryCellKey = String(describing: SummaryCell.self)
+        tableView.register(
+            UINib(nibName: summaryCellKey, bundle: nil),
+            forCellReuseIdentifier: summaryCellKey
+        )
+       
+        let chartCellKey = String(describing: ChartCell.self)
+        tableView.register(
+            UINib(nibName: chartCellKey, bundle: nil),
+            forCellReuseIdentifier: chartCellKey
+        )
     }
 
 
@@ -54,7 +85,13 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if indexPath.section <= cellsToDisplay.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellsToDisplay[indexPath.section].cellIdentifier, for: indexPath) as! ChartAcceptingCell
+            cell.configure(with: someData)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,13 +99,17 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10 // padding between cells
+        return 12 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
 }

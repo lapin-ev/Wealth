@@ -21,7 +21,7 @@ public class Asset: NSManagedObject, Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        type = try container.decodeIfPresent(String.self, forKey: .type)
+        typeRaw = try container.decodeIfPresent(String.self, forKey: .typeRaw)
         assetDescription = try container.decodeIfPresent(String.self, forKey: .assetDescription)
         category = try container.decodeIfPresent(String.self, forKey: .category)
         currency = try container.decodeIfPresent(String.self, forKey: .currency)

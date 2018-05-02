@@ -10,6 +10,17 @@
 import Foundation
 import CoreData
 
+public enum AssetType: String {
+    
+    case equity = "EQUITY_QUOTED"
+    case privateFunds = "PRIVATE_FUNDS"
+    case marineAviation = "MARINE_AVIATION"
+    case realEstate = "REAL_ESTATE"
+    case chattles = "CHATTLES"
+    case artwork = "ARTWORK"
+    case unknown
+}
+
 
 extension Asset {
 
@@ -21,7 +32,7 @@ extension Asset {
     @NSManaged public var category: String?
     @NSManaged public var currency: String?
     @NSManaged public var startingDate: Date?
-    @NSManaged public var type: String?
+    @NSManaged public var typeRaw: String?
     @NSManaged public var currentValuation: AssetValuation?
     @NSManaged public var historicalValuations: Set<AssetValuation>?
     
@@ -29,13 +40,23 @@ extension Asset {
     
     enum CodingKeys: String, CodingKey {
         
-        case type = "assetType"
+        case typeRaw = "assetType"
         case assetDescription
         case category
         case currency
         case startingDate
         case currentValuation
         case historicalValuations
+    }
+    
+    var type: AssetType {
+        get {
+            if let typeRaw = typeRaw {
+                return AssetType(rawValue: typeRaw)!
+            } else {
+                return AssetType.unknown
+            }
+        }
     }
 
 }

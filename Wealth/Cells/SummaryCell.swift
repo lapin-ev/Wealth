@@ -8,17 +8,24 @@
 
 import UIKit
 
-class SummaryCell: UITableViewCell {
+final class SummaryCell: ChartAcceptingCell {
+    
+    @IBOutlet weak var totalCaption: UILabel!
+    @IBOutlet weak var totalValue: UILabel!
+    
+    @IBOutlet weak var ytdCaption: UILabel!
+    @IBOutlet weak var ytdValue: UILabel!
+    
 
+    override func configure(with data: ChartApplicable?) {
+        super.configure(with: data)
+        
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

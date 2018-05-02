@@ -37,6 +37,7 @@ final class DataProvider {
     }
     
     var numberOfSections = Sections.allSections
+    
     // keep once fetched object while class instance exists to minimize DB querying
     private var currentClient: Client?
     
@@ -71,12 +72,13 @@ final class DataProvider {
                            completion: ((TaskCompletion<ChartApplicable>) -> Void)) {
         
         let request: NSFetchRequest<Asset> = Asset.fetchRequest()
-        request.predicate = NSPredicate(format: "client.name = %@ AND type = %@", client.name!, "ARTWORK")
+        request.predicate = NSPredicate(format: "client.name = %@", client.name!) //AND type = %@"
         request.relationshipKeyPathsForPrefetching = ["historicalValuations"]
         request.returnsObjectsAsFaults = false
         let result = try? context.fetch(request)
         
         let assets = result!
+        print(assets.map { $0.typeRaw })
         
         let maxDate = assets.compactMap { $0.currentValuation?.date }.max()
         let currentAmount = assets.compactMap { $0.currentValuation?.inCurrency }.reduce(0.0) { $0 + $1 }

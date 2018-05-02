@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD3020F7209A6DE2000E19C5 /* ChartAcceptingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3020F6209A6DE2000E19C5 /* ChartAcceptingCell.swift */; };
 		FDA961CE20923C37002B9E6E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA961CB20923C1F002B9E6E /* Charts.framework */; };
 		FDA961CF20923C37002B9E6E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDA961CB20923C1F002B9E6E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FDA961D820923D15002B9E6E /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA961D420923D15002B9E6E /* ChartCell.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FD3020F6209A6DE2000E19C5 /* ChartAcceptingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartAcceptingCell.swift; sourceTree = "<group>"; };
 		FDA961C520923C1E002B9E6E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		FDA961D420923D15002B9E6E /* ChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		FDA961D520923D15002B9E6E /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				FDA961D420923D15002B9E6E /* ChartCell.swift */,
+				FD3020F6209A6DE2000E19C5 /* ChartAcceptingCell.swift */,
 				FDA961D620923D15002B9E6E /* ChartCell.xib */,
 				FDA961D520923D15002B9E6E /* SummaryCell.swift */,
 				FDA961D720923D15002B9E6E /* SummaryCell.xib */,
@@ -318,6 +321,7 @@
 				FDDFBA81208E9F58006FF31C /* AppDelegate.swift in Sources */,
 				FDA961D920923D15002B9E6E /* SummaryCell.swift in Sources */,
 				FDDFBAA8208E9FBF006FF31C /* Asset+CoreDataClass.swift in Sources */,
+				FD3020F7209A6DE2000E19C5 /* ChartAcceptingCell.swift in Sources */,
 				FDDFBAA1208E9FBF006FF31C /* AssetValuation+CoreDataClass.swift in Sources */,
 				FDDFBAA7208E9FBF006FF31C /* Message+CoreDataClass.swift in Sources */,
 				FDDFBA89208E9F58006FF31C /* Wealth.xcdatamodeld in Sources */,
@@ -474,6 +478,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCN646ZLE7;
 				INFOPLIST_FILE = Wealth/Info.plist;
@@ -484,6 +489,7 @@
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = lapin.Wealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -494,6 +500,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCN646ZLE7;
 				INFOPLIST_FILE = Wealth/Info.plist;
@@ -504,6 +511,7 @@
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = lapin.Wealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
