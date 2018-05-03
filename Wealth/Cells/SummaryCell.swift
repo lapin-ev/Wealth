@@ -10,23 +10,18 @@ import UIKit
 
 final class SummaryCell: ChartAcceptingCell {
     
-    @IBOutlet weak var totalCaption: UILabel!
-    @IBOutlet weak var totalValue: UILabel!
+    @IBOutlet private weak var totalCaption: UILabel!
+    @IBOutlet private weak var totalValue: UILabel!
     
-    @IBOutlet weak var ytdCaption: UILabel!
-    @IBOutlet weak var ytdValue: UILabel!
+    @IBOutlet private weak var ytdCaption: UILabel!
+    @IBOutlet private weak var ytdValue: UILabel!
     
-
-    override func configure(with data: ChartApplicable?) {
-        super.configure(with: data)
-        
-        guard let data = data else { return }
-        
-        var currency = ""
+    override func paint(with data: ChartApplicable) {
+        var currencySymbol = ""
         if data.currency == "GBP" {
-            currency = "£"
+            currencySymbol = "£"
         }
-        totalValue.text = currency + data.totalValue.formatPoints()
+        totalValue.text = currencySymbol + data.totalValue.formatPoints()
         
         if data.ytdValue < 0 {
             ytdValue.text = "↓" + ( -data.ytdValue).formatPoints()
@@ -35,7 +30,6 @@ final class SummaryCell: ChartAcceptingCell {
             ytdValue.text = "↑" + data.ytdValue.formatPoints()
             ytdCaption.text = "NET INCOME YTD".uppercased()
         }
-        
     }
     
     override func awakeFromNib() {

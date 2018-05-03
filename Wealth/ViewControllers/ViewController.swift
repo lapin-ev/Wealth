@@ -11,11 +11,7 @@ import Charts
 
 final class ViewController: UIViewController {
     
-    fileprivate var someData: ChartApplicable? {
-        didSet {
-            print("Setted")
-        }
-    }
+    fileprivate let someData: Observable<ChartApplicable?> = Observable(nil)
     
     fileprivate enum CellType: Int {
         case summary
@@ -44,8 +40,8 @@ final class ViewController: UIViewController {
     @IBAction func reload(_ sender: Any) {
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
             switch $0 {
-            case .success( let values ):
-                print(values)
+            case .success( let value ):
+                self.someData.value = value
             case .failure( let error ):
                 print(error)
             }
@@ -57,7 +53,7 @@ final class ViewController: UIViewController {
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
             switch $0 {
             case .success( let value ):
-                self.someData = value
+                self.someData.value = value
             case .failure( let error ):
                 print(error)
             }
@@ -79,7 +75,6 @@ final class ViewController: UIViewController {
         )
     }
 
-
 }
 
 extension ViewController: UITableViewDataSource {
@@ -90,7 +85,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section <= cellsToDisplay.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellsToDisplay[indexPath.section].cellIdentifier, for: indexPath) as! ChartAcceptingCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: cellsToDisplay[indexPath.section].cellIdentifier, for: indexPath) as! ChartAcceptingCell
             cell.configure(with: someData)
             return cell
         } else {
@@ -103,7 +99,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 12 
+        return 12 // padding between cells
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		FD3020F7209A6DE2000E19C5 /* ChartAcceptingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3020F6209A6DE2000E19C5 /* ChartAcceptingCell.swift */; };
+		FD3C75FA209B9A490054DB60 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C75F9209B9A490054DB60 /* Observable.swift */; };
+		FD3C75FD209BB5DF0054DB60 /* WealthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C75FC209BB5DF0054DB60 /* WealthChart.swift */; };
+		FD3C7603209BB7540054DB60 /* IntAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C75FF209BB7540054DB60 /* IntAxisValueFormatter.swift */; };
+		FD3C7604209BB7540054DB60 /* DayAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C7600209BB7540054DB60 /* DayAxisValueFormatter.swift */; };
+		FD3C7605209BB7540054DB60 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C7601209BB7540054DB60 /* DateValueFormatter.swift */; };
+		FD3C7606209BB7540054DB60 /* LargeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C7602209BB7540054DB60 /* LargeValueFormatter.swift */; };
+		FD3C7608209BBBA20054DB60 /* WealthChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3C7607209BBBA20054DB60 /* WealthChartDataSet.swift */; };
 		FDA961CE20923C37002B9E6E /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA961CB20923C1F002B9E6E /* Charts.framework */; };
 		FDA961CF20923C37002B9E6E /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDA961CB20923C1F002B9E6E /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FDA961D820923D15002B9E6E /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA961D420923D15002B9E6E /* ChartCell.swift */; };
@@ -74,6 +81,13 @@
 
 /* Begin PBXFileReference section */
 		FD3020F6209A6DE2000E19C5 /* ChartAcceptingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartAcceptingCell.swift; sourceTree = "<group>"; };
+		FD3C75F9209B9A490054DB60 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		FD3C75FC209BB5DF0054DB60 /* WealthChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WealthChart.swift; sourceTree = "<group>"; };
+		FD3C75FF209BB7540054DB60 /* IntAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntAxisValueFormatter.swift; sourceTree = "<group>"; };
+		FD3C7600209BB7540054DB60 /* DayAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayAxisValueFormatter.swift; sourceTree = "<group>"; };
+		FD3C7601209BB7540054DB60 /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		FD3C7602209BB7540054DB60 /* LargeValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeValueFormatter.swift; sourceTree = "<group>"; };
+		FD3C7607209BBBA20054DB60 /* WealthChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WealthChartDataSet.swift; sourceTree = "<group>"; };
 		FDA961C520923C1E002B9E6E /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		FDA961D420923D15002B9E6E /* ChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		FDA961D520923D15002B9E6E /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
@@ -113,6 +127,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD3C75F6209B99910054DB60 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				FD3C75F9209B9A490054DB60 /* Observable.swift */,
+				FD3C7607209BBBA20054DB60 /* WealthChartDataSet.swift */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
+		FD3C75FB209BB5BD0054DB60 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD3C75FC209BB5DF0054DB60 /* WealthChart.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FD3C75FE209BB7540054DB60 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				FD3C75FF209BB7540054DB60 /* IntAxisValueFormatter.swift */,
+				FD3C7600209BB7540054DB60 /* DayAxisValueFormatter.swift */,
+				FD3C7601209BB7540054DB60 /* DateValueFormatter.swift */,
+				FD3C7602209BB7540054DB60 /* LargeValueFormatter.swift */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
 		FDA961C620923C1E002B9E6E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +167,8 @@
 		FDA961D320923D15002B9E6E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FDA961D420923D15002B9E6E /* ChartCell.swift */,
 				FD3020F6209A6DE2000E19C5 /* ChartAcceptingCell.swift */,
+				FDA961D420923D15002B9E6E /* ChartCell.swift */,
 				FDA961D620923D15002B9E6E /* ChartCell.xib */,
 				FDA961D520923D15002B9E6E /* SummaryCell.swift */,
 				FDA961D720923D15002B9E6E /* SummaryCell.xib */,
@@ -156,10 +198,13 @@
 			isa = PBXGroup;
 			children = (
 				FDDFBA80208E9F58006FF31C /* AppDelegate.swift */,
+				FD3C75F6209B99910054DB60 /* Extra */,
+				FD3C75FE209BB7540054DB60 /* Formatters */,
 				FDDFBA95208E9FA9006FF31C /* Extensions */,
 				FDDFBA98208E9FBF006FF31C /* Model */,
 				FDA961D320923D15002B9E6E /* Cells */,
 				FDDFBAAB208E9FF7006FF31C /* DataSource */,
+				FD3C75FB209BB5BD0054DB60 /* Views */,
 				FDDFBAB1208EA028006FF31C /* ViewControllers */,
 				FDDFBA84208E9F58006FF31C /* Main.storyboard */,
 				FDDFBA8A208E9F59006FF31C /* Assets.xcassets */,
@@ -312,18 +357,25 @@
 				FDDFBAA4208E9FBF006FF31C /* AssetValuation+CoreDataProperties.swift in Sources */,
 				FDDFBAA6208E9FBF006FF31C /* Asset+CoreDataProperties.swift in Sources */,
 				FDDFBA97208E9FA9006FF31C /* SwiftProtocol + Extension.swift in Sources */,
+				FD3C7603209BB7540054DB60 /* IntAxisValueFormatter.swift in Sources */,
 				FDDFBAB5208EAB82006FF31C /* Foundation + Extension.swift in Sources */,
 				FDDFBAB3208EA028006FF31C /* ViewController.swift in Sources */,
 				FDDFBAA3208E9FBF006FF31C /* Client+CoreDataProperties.swift in Sources */,
 				FDA961D820923D15002B9E6E /* ChartCell.swift in Sources */,
+				FD3C7608209BBBA20054DB60 /* WealthChartDataSet.swift in Sources */,
+				FD3C75FA209B9A490054DB60 /* Observable.swift in Sources */,
+				FD3C75FD209BB5DF0054DB60 /* WealthChart.swift in Sources */,
 				FDDFBAA2208E9FBF006FF31C /* Client+CoreDataClass.swift in Sources */,
 				FDDFBAA5208E9FBF006FF31C /* Message+CoreDataProperties.swift in Sources */,
 				FDDFBA81208E9F58006FF31C /* AppDelegate.swift in Sources */,
 				FDA961D920923D15002B9E6E /* SummaryCell.swift in Sources */,
+				FD3C7605209BB7540054DB60 /* DateValueFormatter.swift in Sources */,
 				FDDFBAA8208E9FBF006FF31C /* Asset+CoreDataClass.swift in Sources */,
 				FD3020F7209A6DE2000E19C5 /* ChartAcceptingCell.swift in Sources */,
+				FD3C7604209BB7540054DB60 /* DayAxisValueFormatter.swift in Sources */,
 				FDDFBAA1208E9FBF006FF31C /* AssetValuation+CoreDataClass.swift in Sources */,
 				FDDFBAA7208E9FBF006FF31C /* Message+CoreDataClass.swift in Sources */,
+				FD3C7606209BB7540054DB60 /* LargeValueFormatter.swift in Sources */,
 				FDDFBA89208E9F58006FF31C /* Wealth.xcdatamodeld in Sources */,
 				FDDFBAAD208E9FF7006FF31C /* DataProvider.swift in Sources */,
 			);

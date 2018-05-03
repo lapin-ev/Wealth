@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wealth/DataSource/DataProvider.swift"
-            timestampString = "547005845.066767"
+            filePath = "Wealth/Cells/ChartAcceptingCell.swift"
+            timestampString = "547077918.465022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "calculate(for:in:completion:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "configure(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
