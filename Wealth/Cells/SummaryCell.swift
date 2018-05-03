@@ -20,6 +20,21 @@ final class SummaryCell: ChartAcceptingCell {
     override func configure(with data: ChartApplicable?) {
         super.configure(with: data)
         
+        guard let data = data else { return }
+        
+        var currency = ""
+        if data.currency == "GBP" {
+            currency = "£"
+        }
+        totalValue.text = currency + data.totalValue.formatPoints()
+        
+        if data.ytdValue < 0 {
+            ytdValue.text = "↓" + ( -data.ytdValue).formatPoints()
+            ytdCaption.text = "NET LOSS YTD".uppercased()
+        } else {
+            ytdValue.text = "↑" + data.ytdValue.formatPoints()
+            ytdCaption.text = "NET INCOME YTD".uppercased()
+        }
         
     }
     

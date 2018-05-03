@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Performance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eR-9g-LON">
-                                <rect key="frame" x="16" y="21" width="81" height="17"/>
+                                <rect key="frame" x="22" y="21" width="81" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                             <constraint firstAttribute="height" constant="59" id="Npc-Gu-ndT"/>
                             <constraint firstItem="5eR-9g-LON" firstAttribute="centerY" secondItem="NBr-Ww-Vp4" secondAttribute="centerY" id="ZwS-uP-0UR"/>
                             <constraint firstItem="5eR-9g-LON" firstAttribute="centerY" secondItem="bAG-2D-vlY" secondAttribute="centerY" id="jGX-Yv-3UX"/>
-                            <constraint firstItem="5eR-9g-LON" firstAttribute="leading" secondItem="bAG-2D-vlY" secondAttribute="leading" constant="16" id="sGB-ec-YTn"/>
+                            <constraint firstItem="5eR-9g-LON" firstAttribute="leading" secondItem="bAG-2D-vlY" secondAttribute="leading" constant="22" id="sGB-ec-YTn"/>
                             <constraint firstItem="NBr-Ww-Vp4" firstAttribute="top" secondItem="bAG-2D-vlY" secondAttribute="top" constant="14" id="t2f-lg-YcD"/>
                             <constraint firstItem="NBr-Ww-Vp4" firstAttribute="trailing" secondItem="bAG-2D-vlY" secondAttribute="trailingMargin" id="toh-5T-6Fr"/>
                         </constraints>
@@ -55,7 +55,7 @@
                             <constraint firstAttribute="height" constant="212" id="r4C-N7-9ce"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-ki-agn">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIC-ki-agn" userLabel="SeparatorView">
                         <rect key="frame" x="16" y="59" width="288" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -71,7 +71,7 @@
                     <constraint firstItem="VpL-VT-iJP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="VZI-mP-vNm"/>
                     <constraint firstItem="bIC-ki-agn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Y58-bd-Wpi"/>
                     <constraint firstItem="bIC-ki-agn" firstAttribute="top" secondItem="bAG-2D-vlY" secondAttribute="bottom" id="ciE-50-sAL"/>
-                    <constraint firstAttribute="bottom" secondItem="VpL-VT-iJP" secondAttribute="bottom" constant="12.5" id="h9B-4R-HqH"/>
+                    <constraint firstAttribute="bottom" secondItem="VpL-VT-iJP" secondAttribute="bottom" constant="12" id="h9B-4R-HqH"/>
                     <constraint firstAttribute="trailing" secondItem="bAG-2D-vlY" secondAttribute="trailing" id="hE4-Bu-AJg"/>
                     <constraint firstItem="bAG-2D-vlY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iLg-XC-3QS"/>
                 </constraints>

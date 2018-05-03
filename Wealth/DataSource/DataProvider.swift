@@ -10,14 +10,33 @@ import Foundation
 import UIKit
 import CoreData
 
+
+
 protocol ChartApplicable: class {
     
-    var someInfo: Array<Double> { get set }
+    var totalValue: Double { get set }
+    var ytdValue: Double { get set }
+    
+    var currency: String { get set }
+    var chartData: [(key: Date, value: Double)]? { get set }
+    var startDate: Date { get set }
 }
 
 class WealthOfAPerson: ChartApplicable {
     
-    var someInfo: Array<Double> = []
+    var totalValue: Double
+    var ytdValue: Double
+    var currency: String
+    var startDate: Date
+    
+    var chartData: [(key: Date, value: Double)]?
+    
+    init(currency: String, totalValue: Double, ytdValue: Double, startDate: Date) {
+        self.currency = currency
+        self.totalValue = totalValue
+        self.ytdValue = ytdValue
+        self.startDate = startDate
+    }
     
 }
 
@@ -42,6 +61,7 @@ final class DataProvider {
     private var currentClient: Client?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let assetType = AssetType.artwork
     
     func getData(in dateInterval: DateInterval, completion: ((TaskCompletion<ChartApplicable>) -> Void)) {
         var sourceClient: Client?
@@ -72,28 +92,52 @@ final class DataProvider {
                            completion: ((TaskCompletion<ChartApplicable>) -> Void)) {
         
         let request: NSFetchRequest<Asset> = Asset.fetchRequest()
-        request.predicate = NSPredicate(format: "client.name = %@", client.name!) //AND type = %@"
+        request.predicate = NSPredicate(format: "client.uid = %@ AND typeRaw = %@", client.uid!, assetType.rawValue)
         request.relationshipKeyPathsForPrefetching = ["historicalValuations"]
         request.returnsObjectsAsFaults = false
         let result = try? context.fetch(request)
         
         let assets = result!
-        print(assets.map { $0.typeRaw })
         
         let maxDate = assets.compactMap { $0.currentValuation?.date }.max()
         let currentAmount = assets.compactMap { $0.currentValuation?.inCurrency }.reduce(0.0) { $0 + $1 }
         
-        let amountForDate = assets.compactMap { $0.historicalValuations?.filter { String(describing: $0.date) == "2015-12-31 18:30:00 +0000"} }
+        let ytdValue = currentAmount - findAmount(for: assets.first!, on: maxDate!.startOfYear)
+//
+//        let amountForDate = assets.compactMap { $0.historicalValuations?.filter { String(describing: $0.date) == "2015-12-31 18:30:00 +0000"} }
         
         var dict = [Date: Double]()
         assets.forEach { asset in
-            asset.historicalValuations?.forEach { valuation in
-                dict[valuation.date!] = dict[valuation.date!] ?? 0 + valuation.inCurrency
-            }
+            asset.historicalValuations?
+                .filter { $0.date! >= maxDate!.startOfQuarter }
+                .forEach { valuation in
+                    dict[valuation.date!] = dict[valuation.date!] ?? 0 + valuation.inCurrency
+                }
         }
-
-        print(dict.sorted(by: { $0.0 < $1.0 }))
-
+        
+        let sorted = dict.sorted(by: { $0.0 < $1.0 })
+        print(sorted)
+        
+        let wealth = WealthOfAPerson(
+            currency: assets.first?.currency ?? "",
+            totalValue: currentAmount,
+            ytdValue: ytdValue,
+            startDate: maxDate ?? Date()
+        )
+        wealth.chartData = sorted
+        completion(.success(wealth))
+    }
+    
+    private func findAmount(for asset: Asset, on date: Date) -> Double {
+//        let request: NSFetchRequest<AssetValuation> = AssetValuation.fetchRequest()
+//        request.predicate = NSPredicate(format: "historical IN %@", asset.historicalValuations!)
+//        request.returnsObjectsAsFaults = false
+//        let result = try? context.fetch(request)
+        
+        
+        let firstHistorical = asset.historicalValuations?.filter { $0.date! > date }.sorted(by: { $0.date! < $1.date! }).first
+        
+        return firstHistorical?.inCurrency ?? 0.0
     }
     
     private func findLocally() -> Client? {
@@ -126,7 +170,5 @@ final class DataProvider {
             print("error:\(error)")
         }
     }
-    
-    
     
 }

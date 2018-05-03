@@ -10,93 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wealth/DataSource/DataProvider.swift"
-            timestampString = "546995953.395534"
+            timestampString = "547005845.066767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "calculate(for:in:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Wealth.DataProvider.(calculate in _F5D9ED07AD6EE8745076739906C9AB2C)(for: Wealth.Client, in: Foundation.DateInterval, completion: (Wealth.TaskCompletion&lt;Wealth.ChartApplicable&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Wealth"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Athey/Developer/Wealth/Wealth/DataSource/DataProvider.swift"
-                  timestampString = "546992426.18291"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "2004">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Wealth.Asset) -&gt; Swift.Optional&lt;Foundation.Date&gt; in Wealth.DataProvider.(calculate in _F5D9ED07AD6EE8745076739906C9AB2C)(for: Wealth.Client, in: Foundation.DateInterval, completion: (Wealth.TaskCompletion&lt;Wealth.ChartApplicable&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Wealth"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Athey/Developer/Wealth/Wealth/DataSource/DataProvider.swift"
-                  timestampString = "546992426.1856149"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "83"
-                  endingLineNumber = "83"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wealth/DataSource/DataProvider.swift"
-            timestampString = "546995953.395648"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "calculate(for:in:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Wealth.DataProvider.(calculate in _F5D9ED07AD6EE8745076739906C9AB2C)(for: Wealth.Client, in: Foundation.DateInterval, completion: (Wealth.TaskCompletion&lt;Wealth.ChartApplicable&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Wealth"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Athey/Developer/Wealth/Wealth/DataSource/DataProvider.swift"
-                  timestampString = "546992688.085964"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "3176">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #7 ((key: Foundation.Date, value: Swift.Double), (key: Foundation.Date, value: Swift.Double)) -&gt; Swift.Bool in Wealth.DataProvider.(calculate in _F5D9ED07AD6EE8745076739906C9AB2C)(for: Wealth.Client, in: Foundation.DateInterval, completion: (Wealth.TaskCompletion&lt;Wealth.ChartApplicable&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Wealth"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Athey/Developer/Wealth/Wealth/DataSource/DataProvider.swift"
-                  timestampString = "546992688.088654"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

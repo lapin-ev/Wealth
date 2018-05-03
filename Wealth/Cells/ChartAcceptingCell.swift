@@ -10,6 +10,8 @@ import UIKit
 
 class ChartAcceptingCell: UITableViewCell {
     
+    var inject: (() -> ChartApplicable?)?
+    
     private var info: ChartApplicable?
     
     func configure(with data: ChartApplicable?) {

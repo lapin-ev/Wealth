@@ -11,7 +11,11 @@ import Charts
 
 final class ViewController: UIViewController {
     
-    fileprivate var someData: ChartApplicable?
+    fileprivate var someData: ChartApplicable? {
+        didSet {
+            print("Setted")
+        }
+    }
     
     fileprivate enum CellType: Int {
         case summary
@@ -52,8 +56,8 @@ final class ViewController: UIViewController {
         
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
             switch $0 {
-            case .success( let values ):
-                print(values)
+            case .success( let value ):
+                self.someData = value
             case .failure( let error ):
                 print(error)
             }
@@ -114,6 +118,4 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-extension ViewController: UITableViewDelegate {
-    
-}
+extension ViewController: UITableViewDelegate { }
