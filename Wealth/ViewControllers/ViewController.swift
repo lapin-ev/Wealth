@@ -39,10 +39,10 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
+        dataProvider.getData(in: DateInterval(start: Date(), end: Date())) { [weak wealthData] in
             switch $0 {
             case .success( let value ):
-                self.wealthData.value = value
+                wealthData?.value = value
             case .failure: ()
             }
         }
