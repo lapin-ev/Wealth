@@ -19,9 +19,9 @@ class ChartAcceptingCell: UITableViewCell {
         if let data = data.value {
             paint(with: data)
         }
-        observationToken = data.onChange { data in
+        observationToken = data.onChange { [weak self] data in
             guard let data = data else { return }
-            self.paint(with: data)
+            self?.paint(with: data)
         }
     }
     
