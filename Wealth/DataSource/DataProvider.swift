@@ -103,13 +103,8 @@ final class DataProvider {
         let request: NSFetchRequest<Client> = Client.fetchRequest()
         request.relationshipKeyPathsForPrefetching = ["assets"]
         request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            return result.first
-        } catch {
-            print("Failed")
-        }
-        return nil
+        let result = try? context.fetch(request)
+        return result?.first
     }
     
     private func loadDataFromFile() {
@@ -125,9 +120,7 @@ final class DataProvider {
             context.performAndWait {
                 try? context.save()
             }
-        } catch {
-            print("error:\(error)")
-        }
+        } catch {  }
     }
     
 }

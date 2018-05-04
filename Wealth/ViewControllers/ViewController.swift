@@ -43,8 +43,7 @@ final class ViewController: UIViewController {
             switch $0 {
             case .success( let value ):
                 self.wealthData.value = value
-            case .failure( let error ):
-                print(error)
+            case .failure: ()
             }
         }
         registerNibs()
