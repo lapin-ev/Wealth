@@ -49,3 +49,33 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
 }
+
+extension Double {
+    
+    func formatPoints() -> String {
+        let thousandNum = self / 1000
+        let millionNum = self / 1000000
+        if self >= 1000 && self < 1000000 {
+            if floor(thousandNum) == thousandNum {
+                return ("\(Int(thousandNum)) k").replacingOccurrences(of: ".0", with: "")
+            }
+            return("\(thousandNum.round(to: 1)) k").replacingOccurrences(of: ".0", with: "")
+        }
+        if self > 1000000 {
+            if floor(millionNum) == millionNum {
+                return("\(Int(thousandNum)) k").replacingOccurrences(of: ".0", with: "")
+            }
+            return ("\(millionNum.round(to: 1)) m").replacingOccurrences(of: ".0", with: "")
+        } else {
+            if floor(self) == self {
+                return ("\(Int(self))")
+            }
+            return ("\(self)")
+        }
+    }
+    
+    func round(to places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}

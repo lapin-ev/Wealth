@@ -28,14 +28,13 @@ final class SummaryCell: ChartAcceptingCell {
         if data.currency == "GBP" {
             currencySymbol = "£"
         }
-        let formatter = LargeValueFormatter()
-        totalValue.text = currencySymbol + formatter.stringForValue(data.totalValue)
+        totalValue.text = currencySymbol + data.totalValue.formatPoints()
         
         if data.ytdValue < 0 {
-            ytdValue.text = "↓" + formatter.stringForValue( -data.ytdValue)
+            ytdValue.text = "↓" + ( -data.ytdValue).formatPoints()
             ytdCaption.text = "NET LOSS YTD".uppercased()
         } else {
-            ytdValue.text = "↑" + formatter.stringForValue(data.ytdValue)
+            ytdValue.text = "↑" + data.ytdValue.formatPoints()
             ytdCaption.text = "NET INCOME YTD".uppercased()
         }
     }
