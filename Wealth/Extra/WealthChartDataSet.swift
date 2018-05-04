@@ -24,11 +24,13 @@ final class WealthChartDataSet: LineChartDataSet {
         highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
         drawCircleHoleEnabled = false
         
-        let gradientColors = [ChartColorTemplates.colorFromString("#ffffff").cgColor,
-                              ChartColorTemplates.colorFromString("#C2207E").cgColor]
+        let gradientColors = [
+            ChartColorTemplates.colorFromString("#ffffff").cgColor,
+            ChartColorTemplates.colorFromString("#C2207E").cgColor
+        ]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
-        fillAlpha = 1
+        fillAlpha = 0.6
         fill = Fill(linearGradient: gradient, angle: 90)
         drawFilledEnabled = true
     }

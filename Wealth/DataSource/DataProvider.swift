@@ -61,7 +61,7 @@ final class DataProvider {
     private var currentClient: Client?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private let assetType = AssetType.artwork
+    private let assetType = AssetType.realEstate
     
     func getData(in dateInterval: DateInterval, completion: ((TaskCompletion<ChartApplicable>) -> Void)) {
         var sourceClient: Client?
@@ -104,15 +104,12 @@ final class DataProvider {
         let maxDate = assets.compactMap { $0.currentValuation?.date }.max()
         let currentAmount = assets.compactMap { $0.currentValuation?.inCurrency }.reduce(0.0) { $0 + $1 }
         
-        let ytdValue = currentAmount - findAmount(for: assets.first!, on: maxDate!.startOfYear)
+        let ytdValue = currentAmount - findAmount(for: assets, on: maxDate!.startOfYear)
         
         var dict = [Date: Double]()
-        assets.forEach { asset in
-            asset.historicalValuations?
-                .filter { $0.date! >= maxDate!.startOfQuarter }
-                .forEach { valuation in
-                    dict[valuation.date!] = dict[valuation.date!] ?? 0 + valuation.inCurrency
-                }
+        assets.forEach { $0.historicalValuations?
+            .filter { $0.date! >= maxDate!.startOfQuarter }
+            .forEach { dict[$0.date!] = dict[$0.date!] ?? 0 + $0.inCurrency }
         }
         
         let sorted = dict.sorted(by: { $0.0 < $1.0 })
@@ -127,10 +124,18 @@ final class DataProvider {
         completion(.success(wealth))
     }
     
-    private func findAmount(for asset: Asset, on date: Date) -> Double {
-        let firstHistorical = asset.historicalValuations?.filter { $0.date! > date }.sorted(by: { $0.date! < $1.date! }).first
-        
-        return firstHistorical?.inCurrency ?? 0.0
+    private func findAmount(for assets: [Asset], on date: Date) -> Double {
+        var firstAmount = 0.0
+        assets.forEach { firstAmount = firstAmount + self.value(for: $0, on: date) }
+    
+        return firstAmount
+    }
+    
+    private func value(for asset: Asset, on date: Date) -> Double {
+        return asset.historicalValuations?
+            .filter { $0.date! < date }
+            .sorted(by: { $0.date! > $1.date! })
+            .first?.inCurrency ?? 0.0
     }
     
     private func findLocally() -> Client? {

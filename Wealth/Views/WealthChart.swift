@@ -38,9 +38,9 @@ final class WealthChart: LineChartView {
         let xAxis = self.xAxis
         xAxis.labelPosition = .bottom
         xAxis.labelFont = .systemFont(ofSize: 10, weight: .light)
-        xAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
+        xAxis.labelTextColor = UIColor(red: 121/255, green: 120/255, blue: 122/255, alpha: 1)
         xAxis.drawAxisLineEnabled = false
-        xAxis.drawGridLinesEnabled = true
+        xAxis.drawGridLinesEnabled = false
         xAxis.centerAxisLabelsEnabled = true
         xAxis.granularity = 3600
         xAxis.valueFormatter = DateValueFormatter()
@@ -48,12 +48,12 @@ final class WealthChart: LineChartView {
         let rightAxis = self.rightAxis
         rightAxis.labelPosition = .outsideChart
         rightAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
-        rightAxis.drawGridLinesEnabled = true
         rightAxis.granularityEnabled = true
-        rightAxis.axisMinimum = 0
-        rightAxis.axisMaximum = 170
+        rightAxis.drawGridLinesEnabled = true
+        rightAxis.gridLineDashLengths = [3.0]
+        rightAxis.drawAxisLineEnabled = false
         rightAxis.yOffset = -9
-        rightAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
+        rightAxis.labelTextColor = UIColor(red: 121/255, green: 120/255, blue: 122/255, alpha: 1)
         rightAxis.valueFormatter = LargeValueFormatter()
         
         leftAxis.enabled = false

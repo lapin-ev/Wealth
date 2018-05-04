@@ -20,25 +20,24 @@ final class ChartCell: ChartAcceptingCell {
     }
     
     private func fillChart(with data: [(key: Date, value: Double)]) {
+        var values = [ChartDataEntry]()
         
-        let now = Date().timeIntervalSince1970
-        let hourSeconds: TimeInterval = 3600
-        
-        let from = now - (Double(100) / 2) * hourSeconds
-        let to = now + (Double(100) / 2) * hourSeconds
-        
-        let values = stride(from: from, to: to, by: hourSeconds).map { (x) -> ChartDataEntry in
-            let y = arc4random_uniform(30) + 50
-            return ChartDataEntry(x: x, y: Double(y))
+        data.forEach {
+            values.append(ChartDataEntry(x: $0.key.timeIntervalSince1970, y: $0.value))
+            print("\($0.key)" + "  \($0.value)")
         }
+
+        let dataSet = WealthChartDataSet(values: values, label: nil)
         
-        let set1 = WealthChartDataSet(values: values, label: nil)
+        let chartData = LineChartData(dataSet: dataSet)
+//        chartData.setValueTextColor(.white)
+//        chartData.setValueFont(.systemFont(ofSize: 9, weight: .light))
         
-        let data = LineChartData(dataSet: set1)
-        data.setValueTextColor(.white)
-        data.setValueFont(.systemFont(ofSize: 9, weight: .light))
-        
-        chartView.data = data
+        chartView.data = chartData
+        for set in chartView.data!.dataSets as! [WealthChartDataSet] {
+            set.mode = (set.mode == .cubicBezier) ? .linear : .cubicBezier
+        }
+        chartView.setNeedsDisplay()
     }
     
 }
