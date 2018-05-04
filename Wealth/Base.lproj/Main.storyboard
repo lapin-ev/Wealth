@@ -54,14 +54,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="8e7-jG-Y94">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sya-iL-4qx">
-                            <rect key="frame" x="164.5" y="7" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="reload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oHI-ao-5oK"/>
-                            </connections>
-                        </button>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="oYK-UD-voT" id="FDf-2I-iQh"/>
