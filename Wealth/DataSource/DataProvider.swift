@@ -27,8 +27,6 @@ final class DataProvider {
     func getData(in dateInterval: DateInterval, completion: ((TaskCompletion<ChartApplicable>) -> Void)) {
         var sourceClient: Client?
 
-        // TODO: Make proxy here for object
-        
         if let client = currentClient {
             sourceClient = client
         } else if let client = findInLocalDatabase() {
