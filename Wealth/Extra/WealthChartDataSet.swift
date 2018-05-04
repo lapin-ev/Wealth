@@ -19,8 +19,6 @@ final class WealthChartDataSet: LineChartDataSet {
         lineWidth = 1.5
         drawCirclesEnabled = false
         drawValuesEnabled = false
-        fillAlpha = 0.26
-        fillColor = UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)
         highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
         drawCircleHoleEnabled = false
         

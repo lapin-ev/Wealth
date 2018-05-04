@@ -42,7 +42,7 @@ public class LargeValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter
         return r
     }
     
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+    public func stringForValue(_ value: Double, axis: AxisBase? = nil) -> String {
         return format(value: value)
     }
     

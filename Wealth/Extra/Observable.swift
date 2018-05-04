@@ -40,6 +40,4 @@ final class Observable<T> {
         subscribers[token] = nil
     }
     
-    
-    
 }
