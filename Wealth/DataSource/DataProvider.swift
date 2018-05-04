@@ -10,36 +10,6 @@ import Foundation
 import UIKit
 import CoreData
 
-
-
-protocol ChartApplicable: class { //TODO: Name??
-    
-    var totalValue: Double { get set }
-    var ytdValue: Double { get set }
-    
-    var currency: String { get set }
-    var chartData: [(key: Date, value: Double)]? { get set }
-    var startDate: Date { get set }
-}
-
-class WealthOfAPerson: ChartApplicable {
-    
-    var totalValue: Double
-    var ytdValue: Double
-    var currency: String
-    var startDate: Date
-    
-    var chartData: [(key: Date, value: Double)]?
-    
-    init(currency: String, totalValue: Double, ytdValue: Double, startDate: Date) {
-        self.currency = currency
-        self.totalValue = totalValue
-        self.ytdValue = ytdValue
-        self.startDate = startDate
-    }
-    
-}
-
 public enum TaskCompletion<T> {
     
     case success(T)
@@ -49,15 +19,6 @@ public enum TaskCompletion<T> {
 
 final class DataProvider {
     
-    enum Sections {
-        case summary, chart
-        
-        static var allSections: [Sections] = [.summary, .chart]
-    }
-    
-    var numberOfSections = Sections.allSections
-    
-    // keep once fetched object while class instance exists to minimize DB querying
     private var currentClient: Client?
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -70,12 +31,12 @@ final class DataProvider {
         
         if let client = currentClient {
             sourceClient = client
-        } else if let client = findLocally() {
+        } else if let client = findInLocalDatabase() {
             currentClient = client
             sourceClient = client
         } else {
             loadDataFromFile()
-            if let client = findLocally() {
+            if let client = findInLocalDatabase() {
                 sourceClient = client
             }
         }
@@ -99,46 +60,48 @@ final class DataProvider {
         request.returnsObjectsAsFaults = false
         let result = try? context.fetch(request)
         
-        let assets = result!
-        
-        let maxDate = assets.compactMap { $0.currentValuation?.date }.max()
-        let currentAmount = assets.compactMap { $0.currentValuation?.inCurrency }.reduce(0.0) { $0 + $1 }
-        
-        let ytdValue = currentAmount - findAmount(for: assets, on: maxDate!.startOfYear)
-        
-        var dict = [Date: Double]()
-        assets.forEach { $0.historicalValuations?
-            .filter { $0.date! >= maxDate!.startOfQuarter }
-            .forEach { dict[$0.date!] = dict[$0.date!] ?? 0 + $0.inCurrency }
+        guard let assets = result else {
+            completion(.failure(NSError(domain: "Wealth", code: 999, userInfo: nil)))
+            
+            return
         }
         
-        let sorted = dict.sorted(by: { $0.0 < $1.0 })
+        let maxDate = assets.compactMap { $0.currentValuation?.date }.max() ?? Date()
+        let currentAmount = assets.compactMap { $0.currentValuation?.inCurrency }.reduce(0.0) { $0 + $1 }
+        
+        let ytdValue = currentAmount - findAmount(for: assets, on: maxDate.startOfYear)
+        
+        var valuations = [Date: Double]()
+        assets.forEach { $0.historicalValuations?
+            .filter { $0.date! >= maxDate.startOfQuarter }
+            .forEach { valuations[$0.date!] = valuations[$0.date!] ?? 0 + $0.inCurrency }
+        }
         
         let wealth = WealthOfAPerson(
             currency: assets.first?.currency ?? "",
             totalValue: currentAmount,
             ytdValue: ytdValue,
-            startDate: maxDate ?? Date()
+            startDate: maxDate
         )
-        wealth.chartData = sorted
+        wealth.chartData = valuations.sorted(by: { $0.0 < $1.0 })
         completion(.success(wealth))
     }
     
     private func findAmount(for assets: [Asset], on date: Date) -> Double {
         var firstAmount = 0.0
-        assets.forEach { firstAmount = firstAmount + self.value(for: $0, on: date) }
+        assets.forEach { firstAmount = firstAmount + self.valuationsValue(for: $0, on: date) }
     
         return firstAmount
     }
     
-    private func value(for asset: Asset, on date: Date) -> Double {
+    private func valuationsValue(for asset: Asset, on date: Date) -> Double {
         return asset.historicalValuations?
             .filter { $0.date! < date }
             .sorted(by: { $0.date! > $1.date! })
             .first?.inCurrency ?? 0.0
     }
     
-    private func findLocally() -> Client? {
+    private func findInLocalDatabase() -> Client? {
         let request: NSFetchRequest<Client> = Client.fetchRequest()
         request.relationshipKeyPathsForPrefetching = ["assets"]
         request.returnsObjectsAsFaults = false

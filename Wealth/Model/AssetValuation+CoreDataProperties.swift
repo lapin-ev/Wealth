@@ -22,8 +22,6 @@ extension AssetValuation {
     
     @NSManaged public var asset: Asset?
     @NSManaged public var historical: Asset?
-
-    
     
     enum CodingKeys: String, CodingKey {
         

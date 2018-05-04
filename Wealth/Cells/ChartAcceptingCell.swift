@@ -36,7 +36,7 @@ class ChartAcceptingCell: UITableViewCell {
     }
     
     func paint(with data: ChartApplicable) {
-//        func should be overriden
+        fatalError("Has to be implemented in subclass")
     }
     
 }

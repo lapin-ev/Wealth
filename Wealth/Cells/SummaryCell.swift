@@ -16,6 +16,13 @@ final class SummaryCell: ChartAcceptingCell {
     @IBOutlet private weak var ytdCaption: UILabel!
     @IBOutlet private weak var ytdValue: UILabel!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        totalValue.text = "-"
+        ytdValue.text = "-"
+    }
+    
     override func paint(with data: ChartApplicable) {
         var currencySymbol = ""
         if data.currency == "GBP" {
@@ -30,11 +37,6 @@ final class SummaryCell: ChartAcceptingCell {
             ytdValue.text = "↑" + data.ytdValue.formatPoints()
             ytdCaption.text = "NET INCOME YTD".uppercased()
         }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
     }
     
 }

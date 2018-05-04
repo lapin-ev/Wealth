@@ -11,11 +11,10 @@ import Charts
 
 final class ViewController: UIViewController {
     
-    fileprivate let someData: Observable<ChartApplicable?> = Observable(nil)
+    fileprivate let wealthData: Observable<ChartApplicable?> = Observable(nil)
     
     fileprivate enum CellType: Int {
-        case summary
-        case chart
+        case summary, chart
         
         var cellIdentifier: String {
             get {
@@ -37,23 +36,13 @@ final class ViewController: UIViewController {
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     
-    @IBAction func reload(_ sender: Any) {
-        dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
-            switch $0 {
-            case .success( let value ):
-                self.someData.value = value
-            case .failure( let error ):
-                print(error)
-            }
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) {
             switch $0 {
             case .success( let value ):
-                self.someData.value = value
+                self.wealthData.value = value
             case .failure( let error ):
                 print(error)
             }
@@ -84,18 +73,14 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section <= cellsToDisplay.count {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: cellsToDisplay[indexPath.section].cellIdentifier, for: indexPath) as! ChartAcceptingCell
-            cell.configure(with: someData)
-            return cell
-        } else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: cellsToDisplay[indexPath.section].cellIdentifier, for: indexPath) as! ChartAcceptingCell
+        cell.configure(with: wealthData)
+        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataProvider.numberOfSections.count
+        return cellsToDisplay.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
