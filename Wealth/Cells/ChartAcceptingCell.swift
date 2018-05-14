@@ -10,6 +10,8 @@ import UIKit
 
 class ChartAcceptingCell: UITableViewCell {
     
+    // MARK: CodeReview
+    // Cell can not exist without these properties, so I would recommend to do it non-optional
     private var info: Observable<ChartApplicable?>?
     private var observationToken: String?
     

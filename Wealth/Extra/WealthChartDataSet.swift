@@ -15,6 +15,8 @@ final class WealthChartDataSet: LineChartDataSet {
         super.init(values: values, label: label)
      
         axisDependency = .left
+        // MARK: CodeReview
+        // You can use Color Literal: #colorLiteral(red: 107/255, green: 23/255, blue: 102/255, alpha: 1.0)
         setColor(UIColor(red: 107/255, green: 23/255, blue: 102/255, alpha: 1))
         lineWidth = 1.5
         drawCirclesEnabled = false

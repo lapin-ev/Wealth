@@ -30,6 +30,8 @@ final class SummaryCell: ChartAcceptingCell {
         }
         totalValue.text = currencySymbol + data.totalValue.formatPoints()
         
+        // MARK: CodeReview
+        // Try to avoid if-else and use a guard barrier instead
         if data.ytdValue < 0 {
             ytdValue.text = "↓" + ( -data.ytdValue).formatPoints()
             ytdCaption.text = "NET LOSS YTD".uppercased()
