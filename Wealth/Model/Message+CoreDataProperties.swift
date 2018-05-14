@@ -16,7 +16,7 @@ extension Message {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Message> {
         return NSFetchRequest<Message>(entityName: "Message")
     }
-
+    
     @NSManaged public var ccNames: Array<String>?
     @NSManaged public var date: Date?
     @NSManaged public var fromName: String?

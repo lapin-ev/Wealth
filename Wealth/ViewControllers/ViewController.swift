@@ -28,6 +28,8 @@ final class ViewController: UIViewController {
         }
     }
     
+    // MARK: CodeReview
+    // Improper an access directive usage. It can be 'private'
     fileprivate var cellsToDisplay: [CellType] = [.summary, .chart]
 
     fileprivate lazy var dataProvider: DataProvider = {
@@ -40,6 +42,13 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         dataProvider.getData(in: DateInterval(start: Date(), end: Date())) { [weak wealthData] in
+            // MARK: CodeReview
+            // You can use the matching pattern
+            //
+//            if case .success( let value ) = $0 {
+//                wealthData?.value = value
+//            }
+            
             switch $0 {
             case .success( let value ):
                 wealthData?.value = value

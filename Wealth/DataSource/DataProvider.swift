@@ -87,6 +87,8 @@ final class DataProvider {
     
     private func findAmount(for assets: [Asset], on date: Date) -> Double {
         var firstAmount = 0.0
+        // MARK: CodeReview
+        // For this case it would be better to use 'reduce'
         assets.forEach { firstAmount = firstAmount + self.valuationsValue(for: $0, on: date) }
     
         return firstAmount
@@ -94,6 +96,8 @@ final class DataProvider {
     
     private func valuationsValue(for asset: Asset, on date: Date) -> Double {
         return asset.historicalValuations?
+            // MARK: CodeReview
+            // Dangerous use of force-unwrap, for this case
             .filter { $0.date! < date }
             .sorted(by: { $0.date! > $1.date! })
             .first?.inCurrency ?? 0.0
@@ -103,6 +107,8 @@ final class DataProvider {
         let request: NSFetchRequest<Client> = Client.fetchRequest()
         request.relationshipKeyPathsForPrefetching = ["assets"]
         request.returnsObjectsAsFaults = false
+        // MARK: CodeReview
+        // Better to throw an error and avoid optional func's return value
         let result = try? context.fetch(request)
         return result?.first
     }

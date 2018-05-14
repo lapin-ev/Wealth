@@ -9,6 +9,8 @@
 import UIKit
 import Charts
 
+// MARK: CodeReview
+// I would try to implement it via protocol instead of inheritance
 final class ChartCell: ChartAcceptingCell {
 
     @IBOutlet private weak var chartView: WealthChart!
@@ -19,6 +21,8 @@ final class ChartCell: ChartAcceptingCell {
         }
     }
     
+    // MARK: CodeReview
+    // I would create a typealias for tuple
     private func fillChart(with data: [(key: Date, value: Double)]) {
         var values = [ChartDataEntry]()
         data.forEach { values.append(ChartDataEntry(x: $0.key.timeIntervalSince1970, y: $0.value)) }
